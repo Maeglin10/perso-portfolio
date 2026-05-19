@@ -31,6 +31,8 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://valentin-milliand.vercel.app'),
+  alternates: { canonical: '/' },
   title: "Valentin Milliand — Full-Stack Engineer & AI Builder",
   description:
     "Full-Stack Engineer & AI Systems Builder based in Paris. Building production-grade SaaS with Next.js, NestJS, and autonomous AI agents. Available for remote.",
@@ -65,9 +67,28 @@ export default function RootLayout({
     <html
       lang="fr"
       className={`${syne.variable} ${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-      style={{ colorScheme: "dark" }}
+      style={{ colorScheme: "light" }}
     >
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "Valentin Milliand",
+              "url": "https://valentin-milliand.vercel.app",
+              "jobTitle": "Développeur Full-Stack",
+              "sameAs": [
+                "https://github.com/Maeglin10",
+                "https://www.linkedin.com/in/valentin-milliand"
+              ],
+              "knowsAbout": ["Next.js", "TypeScript", "NestJS", "React", "PostgreSQL"]
+            })
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }
