@@ -101,7 +101,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           borderTop: "1px solid var(--border)",
           cursor: isClickable ? "pointer" : "default",
           transition: "border-color 0.2s",
-          borderColor: hovered && isClickable ? "rgba(255,255,255,0.14)" : "var(--border)",
+          borderColor: hovered && isClickable ? "rgba(10,10,10,0.2)" : "var(--border)",
         }}
       >
         <div className="flex items-start justify-between gap-6">
@@ -129,7 +129,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                     fontFamily: "var(--font-syne)",
                     fontSize: "clamp(1.05rem, 2.2vw, 1.4rem)",
                     fontWeight: 700,
-                    color: hovered && isClickable ? "#fff" : "var(--text)",
+                    color: "var(--text)",
                     letterSpacing: "-0.015em",
                     lineHeight: 1,
                     transition: "color 0.2s",
@@ -143,15 +143,15 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                     className="flex items-center gap-1.5 flex-shrink-0"
                     style={{
                       fontFamily: "var(--font-jetbrains-mono)",
-                      fontSize: "0.55rem",
-                      color: "var(--accent)",
+                      fontSize: "0.52rem",
+                      color: "#16a34a",
                       letterSpacing: "0.15em",
                       textTransform: "uppercase",
                     }}
                   >
                     <span
                       className="inline-block w-1 h-1 rounded-full"
-                      style={{ background: "var(--accent)" }}
+                      style={{ background: "#16a34a" }}
                     />
                     Live
                   </span>
@@ -161,8 +161,8 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                   <span
                     style={{
                       fontFamily: "var(--font-jetbrains-mono)",
-                      fontSize: "0.55rem",
-                      color: "rgba(240,240,240,0.3)",
+                      fontSize: "0.52rem",
+                      color: "var(--text-muted)",
                       letterSpacing: "0.12em",
                       textTransform: "uppercase",
                     }}
@@ -192,7 +192,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
                     style={{
                       fontFamily: "var(--font-jetbrains-mono)",
                       fontSize: "0.6rem",
-                      color: "rgba(240,240,240,0.28)",
+                      color: "rgba(10,10,10,0.3)",
                       letterSpacing: "0.04em",
                     }}
                   >

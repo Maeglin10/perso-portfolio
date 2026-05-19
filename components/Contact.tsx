@@ -10,13 +10,11 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 const LINKS = [
   {
     label: "GitHub",
-    sub: "github.com/Maeglin10",
     href: "https://github.com/Maeglin10",
     icon: GithubIcon,
   },
   {
     label: "LinkedIn",
-    sub: "valentin-milliand",
     href: "https://linkedin.com/in/valentin-milliand",
     icon: LinkedinIcon,
   },
@@ -72,7 +70,7 @@ export default function Contact() {
         >
           <span
             className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-            style={{ background: "var(--accent)" }}
+            style={{ background: "#16a34a" }}
           />
           <span
             style={{
@@ -141,7 +139,7 @@ function EmailLink() {
       style={{ textDecoration: "none", width: "fit-content" }}
       onMouseEnter={(e) => {
         const underline = (e.currentTarget as HTMLAnchorElement).querySelector<HTMLSpanElement>(".email-text");
-        if (underline) underline.style.borderColor = "rgba(240,240,240,0.65)";
+        if (underline) underline.style.borderColor = "rgba(10,10,10,0.6)";
         const arrow = (e.currentTarget as HTMLAnchorElement).querySelector<SVGElement>(".email-arrow");
         if (arrow) {
           arrow.style.color = "var(--text)";
@@ -150,7 +148,7 @@ function EmailLink() {
       }}
       onMouseLeave={(e) => {
         const underline = (e.currentTarget as HTMLAnchorElement).querySelector<HTMLSpanElement>(".email-text");
-        if (underline) underline.style.borderColor = "rgba(240,240,240,0.14)";
+        if (underline) underline.style.borderColor = "rgba(10,10,10,0.15)";
         const arrow = (e.currentTarget as HTMLAnchorElement).querySelector<SVGElement>(".email-arrow");
         if (arrow) {
           arrow.style.color = "var(--text-muted)";
@@ -165,7 +163,7 @@ function EmailLink() {
           fontSize: "clamp(1rem, 2.8vw, 1.65rem)",
           fontWeight: 700,
           color: "var(--text)",
-          borderBottom: "1px solid rgba(240,240,240,0.14)",
+          borderBottom: "1px solid rgba(10,10,10,0.15)",
           paddingBottom: "4px",
           transition: "border-color 0.2s",
         }}

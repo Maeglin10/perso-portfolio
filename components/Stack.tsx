@@ -92,7 +92,7 @@ export default function Stack() {
                     style={{
                       fontFamily: "var(--font-inter)",
                       fontSize: "0.875rem",
-                      color: "rgba(240,240,240,0.55)",
+                      color: "var(--text-muted)",
                       lineHeight: 1.4,
                     }}
                   >

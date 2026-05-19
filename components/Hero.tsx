@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -10,25 +9,24 @@ export default function Hero() {
     <section
       id="hero"
       className="relative flex flex-col justify-center min-h-screen px-6 md:px-12 lg:px-20"
-      style={{ background: "var(--bg)" }}
     >
       {/* Availability badge */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        transition={{ duration: 0.5, delay: 0.15 }}
         className="mb-14 flex items-center gap-2.5"
       >
         <span
           className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-          style={{ background: "var(--accent)" }}
+          style={{ background: "#16a34a" }}
         />
         <span
           style={{
             fontFamily: "var(--font-jetbrains-mono)",
-            fontSize: "0.68rem",
+            fontSize: "0.65rem",
             color: "var(--text-muted)",
-            letterSpacing: "0.16em",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
           }}
         >
@@ -37,7 +35,7 @@ export default function Hero() {
       </motion.div>
 
       {/* Giant name */}
-      <div className="mb-10 -ml-1">
+      <div className="mb-12 -ml-1">
         <div className="overflow-hidden">
           <motion.h1
             initial={{ y: "105%" }}
@@ -69,7 +67,7 @@ export default function Hero() {
               letterSpacing: "-0.035em",
               WebkitTextFillColor: "transparent",
               WebkitTextStrokeWidth: "1.5px",
-              WebkitTextStrokeColor: "rgba(240, 240, 240, 0.28)",
+              WebkitTextStrokeColor: "rgba(10,10,10,0.18)",
               userSelect: "none",
             }}
           >
@@ -88,8 +86,8 @@ export default function Hero() {
             fontFamily: "var(--font-inter)",
             fontSize: "clamp(0.8rem, 1.4vw, 0.95rem)",
             color: "var(--text-muted)",
-            lineHeight: 1.7,
-            maxWidth: "30ch",
+            lineHeight: 1.75,
+            maxWidth: "28ch",
           }}
         >
           Full-Stack Engineer · AI Systems Builder
@@ -106,20 +104,20 @@ export default function Hero() {
           <a
             href="#projets"
             style={{
-              fontFamily: "var(--font-space-grotesk)",
+              fontFamily: "var(--font-inter)",
               fontSize: "0.875rem",
               fontWeight: 500,
               color: "var(--text)",
               textDecoration: "none",
-              borderBottom: "1px solid rgba(240,240,240,0.18)",
+              borderBottom: "1px solid rgba(10,10,10,0.2)",
               paddingBottom: "2px",
               transition: "border-color 0.2s",
             }}
             onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,240,240,0.75)";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(10,10,10,0.7)";
             }}
             onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(240,240,240,0.18)";
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(10,10,10,0.2)";
             }}
           >
             Voir le travail →
@@ -127,7 +125,7 @@ export default function Hero() {
           <a
             href="#contact"
             style={{
-              fontFamily: "var(--font-space-grotesk)",
+              fontFamily: "var(--font-inter)",
               fontSize: "0.875rem",
               fontWeight: 500,
               color: "var(--text-muted)",
@@ -151,16 +149,15 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.3 }}
-        className="absolute bottom-10 left-6 md:left-12 lg:left-20 flex flex-col items-center gap-2"
+        className="absolute bottom-10 left-6 md:left-12 lg:left-20"
       >
         <div
           style={{
             width: 1,
-            height: 40,
-            background: "linear-gradient(to bottom, transparent, rgba(240,240,240,0.18))",
+            height: 48,
+            background: "linear-gradient(to bottom, transparent, rgba(10,10,10,0.2))",
           }}
         />
-        <ArrowDown size={11} strokeWidth={1.5} style={{ color: "var(--text-muted)" }} />
       </motion.div>
     </section>
   );
