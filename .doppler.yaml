@@ -1,0 +1,3 @@
+setup:
+  project: perso-portfolio
+  config: production
