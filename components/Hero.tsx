@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { ArrowDownRight } from "lucide-react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -8,126 +9,94 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative flex flex-col justify-center min-h-screen px-6 md:px-12 lg:px-20"
+      className="relative flex flex-col justify-center min-h-screen px-6 md:px-12 lg:px-20 pt-32 pb-20"
     >
-      {/* Availability badge */}
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.15 }}
-        className="mb-14 flex items-center gap-2.5"
-      >
-        <span
-          className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
-          style={{ background: "#16a34a" }}
-        />
-        <span
-          style={{
-            fontFamily: "var(--font-jetbrains-mono)",
-            fontSize: "0.65rem",
-            color: "var(--text-muted)",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          Disponible · Paris, France · Remote
-        </span>
-      </motion.div>
-
-      {/* Giant name */}
-      <div className="mb-12 -ml-1">
-        <div className="overflow-hidden">
-          <motion.h1
-            initial={{ y: "105%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, delay: 0.2, ease: EASE }}
-            style={{
-              fontFamily: "var(--font-syne)",
-              fontSize: "clamp(4rem, 17vw, 17rem)",
-              fontWeight: 800,
-              lineHeight: 0.88,
-              letterSpacing: "-0.035em",
-              color: "var(--text)",
-              userSelect: "none",
-            }}
-          >
-            VALENTIN
-          </motion.h1>
-        </div>
-        <div className="overflow-hidden">
-          <motion.h1
-            initial={{ y: "105%" }}
-            animate={{ y: 0 }}
-            transition={{ duration: 1, delay: 0.34, ease: EASE }}
-            style={{
-              fontFamily: "var(--font-syne)",
-              fontSize: "clamp(4rem, 17vw, 17rem)",
-              fontWeight: 800,
-              lineHeight: 0.88,
-              letterSpacing: "-0.035em",
-              WebkitTextFillColor: "transparent",
-              WebkitTextStrokeWidth: "1.5px",
-              WebkitTextStrokeColor: "rgba(10,10,10,0.18)",
-              userSelect: "none",
-            }}
-          >
-            MILLIAND
-          </motion.h1>
-        </div>
-      </div>
-
-      {/* Role + CTAs */}
-      <div className="flex flex-col sm:flex-row sm:items-end gap-8 sm:gap-20">
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
+      <div className="mx-auto max-w-5xl w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.65, ease: EASE }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="flex items-center gap-2.5 mb-12"
+        >
+          <span
+            className="inline-block w-1.5 h-1.5 rounded-full flex-shrink-0"
+            style={{ background: "var(--accent)" }}
+          />
+          <span className="label-mono">
+            Disponible · Paris · Remote
+          </span>
+        </motion.div>
+
+        <motion.h1
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: EASE }}
+          className="heading-display"
           style={{
-            fontFamily: "var(--font-inter)",
-            fontSize: "clamp(0.8rem, 1.4vw, 0.95rem)",
-            color: "var(--text-muted)",
-            lineHeight: 1.75,
-            maxWidth: "28ch",
+            fontSize: "clamp(2.5rem, 6.5vw, 5.25rem)",
+            letterSpacing: "-0.028em",
+            lineHeight: 1.02,
+            maxWidth: "18ch",
+            marginBottom: "2rem",
           }}
         >
-          Full-Stack Engineer · AI Systems Builder
-          <br />
-          Founder — NestJS, Next.js, Claude API
+          Je conçois des produits SaaS et des systèmes IA{" "}
+          <span style={{ color: "var(--text-muted)" }}>de bout en bout.</span>
+        </motion.h1>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45, ease: EASE }}
+          className="prose-body"
+          style={{
+            fontSize: "clamp(1rem, 1.4vw, 1.125rem)",
+            maxWidth: "56ch",
+            marginBottom: "3.5rem",
+          }}
+        >
+          Valentin Milliand — ingénieur full-stack, fondateur de l&apos;écosystème
+          Aevia. Je construis des plateformes multi-tenant en production sur
+          Next.js, NestJS et l&apos;API Claude, et j&apos;opère les systèmes que j&apos;écris.
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.8, ease: EASE }}
-          className="flex items-center gap-10"
+          transition={{ duration: 0.6, delay: 0.6, ease: EASE }}
+          className="flex flex-col sm:flex-row sm:items-center gap-8 sm:gap-12"
         >
           <a
             href="#projets"
+            className="group inline-flex items-center gap-2.5"
             style={{
               fontFamily: "var(--font-inter)",
-              fontSize: "0.875rem",
+              fontSize: "0.95rem",
               fontWeight: 500,
               color: "var(--text)",
               textDecoration: "none",
-              borderBottom: "1px solid rgba(10,10,10,0.2)",
-              paddingBottom: "2px",
-              transition: "border-color 0.2s",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(10,10,10,0.7)";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(10,10,10,0.2)";
             }}
           >
-            Voir le travail →
+            <span
+              style={{
+                borderBottom: "1px solid var(--text)",
+                paddingBottom: "3px",
+              }}
+            >
+              Voir les projets
+            </span>
+            <ArrowDownRight
+              size={16}
+              strokeWidth={1.75}
+              className="transition-transform group-hover:translate-y-0.5 group-hover:translate-x-0.5"
+            />
           </a>
+
           <a
-            href="#contact"
+            href="mailto:v.milliand@gmail.com"
             style={{
               fontFamily: "var(--font-inter)",
-              fontSize: "0.875rem",
-              fontWeight: 500,
+              fontSize: "0.95rem",
               color: "var(--text-muted)",
               textDecoration: "none",
               transition: "color 0.2s",
@@ -139,25 +108,25 @@ export default function Hero() {
               (e.currentTarget as HTMLAnchorElement).style.color = "var(--text-muted)";
             }}
           >
-            Contact
+            v.milliand@gmail.com
           </a>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.3 }}
-        className="absolute bottom-10 left-6 md:left-12 lg:left-20"
+        transition={{ duration: 1, delay: 1 }}
+        className="absolute bottom-8 left-6 md:left-12 lg:left-20 right-6 md:right-12 lg:right-20"
       >
-        <div
-          style={{
-            width: 1,
-            height: 48,
-            background: "linear-gradient(to bottom, transparent, rgba(10,10,10,0.2))",
-          }}
-        />
+        <div className="mx-auto max-w-5xl flex items-end justify-between">
+          <span className="label-mono">
+            01 / 04 · Présentation
+          </span>
+          <span className="label-mono hidden md:inline">
+            Défilement
+          </span>
+        </div>
       </motion.div>
     </section>
   );

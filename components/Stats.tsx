@@ -5,11 +5,11 @@ import { motion, useInView } from "framer-motion";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-const NUMBERS = [
-  { value: "6", label: "Projets en production" },
-  { value: "201+", label: "Templates web" },
-  { value: "16", label: "Agents IA autonomes" },
-  { value: "3+", label: "Années d'expérience" },
+const FACTS = [
+  { label: "Basé à", value: "Paris, France" },
+  { label: "Disponible", value: "Remote · Freelance ou plein-temps" },
+  { label: "Expérience", value: "3+ ans en production" },
+  { label: "Stack principale", value: "TypeScript, NestJS, Next.js" },
 ];
 
 export default function Stats() {
@@ -17,99 +17,75 @@ export default function Stats() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section ref={ref} className="relative py-24 px-6 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
+    <section
+      ref={ref}
+      id="apropos"
+      className="relative py-28 px-6 md:px-12 lg:px-20"
+    >
+      <div className="mx-auto max-w-5xl">
         <div className="section-divider mb-24" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left: About text */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-16 lg:gap-24">
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, ease: EASE }}
           >
-            <p
-              className="mb-6"
-              style={{
-                fontFamily: "var(--font-jetbrains-mono)",
-                fontSize: "0.65rem",
-                color: "var(--text-muted)",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-              }}
-            >
-              À propos
-            </p>
+            <p className="label-mono mb-6">02 / 04 · À propos</p>
             <h2
-              className="mb-8"
+              className="heading-display"
               style={{
-                fontFamily: "var(--font-syne)",
-                fontSize: "clamp(1.8rem, 4vw, 2.75rem)",
-                fontWeight: 800,
-                color: "var(--text)",
-                lineHeight: 1.1,
-                letterSpacing: "-0.02em",
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                lineHeight: 1.15,
               }}
             >
-              Bâtisseur de systèmes
+              Ingénieur, opérateur,
               <br />
-              plutôt que développeur
+              fondateur.
             </h2>
-            <p
-              style={{
-                fontFamily: "var(--font-inter)",
-                fontSize: "0.95rem",
-                color: "var(--text-muted)",
-                lineHeight: 1.85,
-                maxWidth: "50ch",
-              }}
-            >
-              Je conçois des systèmes complets — du backend NestJS à
-              l'orchestration d'agents IA autonomes. Fondateur de l'écosystème
-              Aevia, je construis des SaaS production-ready que j'opère
-              moi-même : multi-tenant, observabilité, workflows n8n, Claude API.
-            </p>
           </motion.div>
 
-          {/* Right: Numbers */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.15, ease: EASE }}
-            className="grid grid-cols-2 gap-x-8 gap-y-10 content-start"
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
           >
-            {NUMBERS.map((n, i) => (
-              <motion.div
-                key={n.label}
-                initial={{ opacity: 0, y: 14 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.22 + i * 0.08, ease: EASE }}
-              >
-                <div
-                  style={{
-                    fontFamily: "var(--font-syne)",
-                    fontSize: "clamp(2.25rem, 4.5vw, 3.25rem)",
-                    fontWeight: 800,
-                    color: "var(--text)",
-                    lineHeight: 1,
-                    letterSpacing: "-0.03em",
-                    marginBottom: "0.4rem",
-                  }}
+            <p
+              className="prose-body mb-10"
+              style={{ maxWidth: "60ch" }}
+            >
+              Je construis des SaaS production-grade que j&apos;opère moi-même.
+              Mon approche : architecture multi-tenant, observabilité,
+              tests, sécurité par défaut. Je conçois aussi bien la couche
+              backend (NestJS, Prisma, PostgreSQL) que l&apos;interface
+              (Next.js, React, Tailwind), et j&apos;orchestre des agents IA
+              avec l&apos;API Anthropic et n8n.
+            </p>
+
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+              {FACTS.map((fact, i) => (
+                <motion.div
+                  key={fact.label}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.25 + i * 0.06, ease: EASE }}
+                  className="border-t pt-3"
+                  style={{ borderColor: "var(--border)" }}
                 >
-                  {n.value}
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-inter)",
-                    fontSize: "0.8rem",
-                    color: "var(--text-muted)",
-                    lineHeight: 1.4,
-                  }}
-                >
-                  {n.label}
-                </div>
-              </motion.div>
-            ))}
+                  <dt className="label-mono mb-1.5">{fact.label}</dt>
+                  <dd
+                    style={{
+                      fontFamily: "var(--font-inter)",
+                      fontSize: "0.95rem",
+                      color: "var(--text)",
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {fact.value}
+                  </dd>
+                </motion.div>
+              ))}
+            </dl>
           </motion.div>
         </div>
 

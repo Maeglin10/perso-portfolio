@@ -7,20 +7,28 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 const CATEGORIES = [
   {
+    name: "Langages",
+    items: ["TypeScript", "JavaScript", "SQL", "Bash"],
+  },
+  {
     name: "Backend",
-    items: ["NestJS", "Node.js", "PostgreSQL", "Prisma ORM", "Redis", "BullMQ"],
+    items: ["NestJS", "Node.js", "Prisma ORM", "PostgreSQL", "Redis", "BullMQ"],
   },
   {
     name: "Frontend",
-    items: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    items: ["Next.js 16", "React 19", "Tailwind CSS", "Framer Motion"],
   },
   {
-    name: "Infrastructure",
-    items: ["Docker", "Vercel", "Render", "GitHub Actions", "JWT · OAuth 2.0"],
+    name: "Plateforme",
+    items: ["Vercel", "Render", "GitHub Actions", "Docker", "OAuth 2.0 · JWT"],
   },
   {
-    name: "AI / Agents",
-    items: ["Anthropic Claude", "n8n Workflows", "OpenAI API", "Multi-agent", "Puppeteer"],
+    name: "IA & Automatisation",
+    items: ["Anthropic Claude", "n8n", "Vector search", "Multi-agent"],
+  },
+  {
+    name: "Outillage",
+    items: ["Jest · Vitest", "ESLint · Prettier", "Sentry", "Playwright"],
   },
 ];
 
@@ -29,59 +37,46 @@ export default function Stack() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="stack" ref={ref} className="relative py-24 px-6 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.5 }}
-          style={{
-            fontFamily: "var(--font-jetbrains-mono)",
-            fontSize: "0.65rem",
-            color: "var(--text-muted)",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase",
-            marginBottom: "1rem",
-          }}
-        >
-          Technologies
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-          style={{
-            fontFamily: "var(--font-syne)",
-            fontSize: "clamp(2.5rem, 8vw, 6rem)",
-            fontWeight: 800,
-            color: "var(--text)",
-            lineHeight: 0.92,
-            letterSpacing: "-0.03em",
-            marginBottom: "4rem",
-          }}
-        >
-          Stack
-        </motion.h2>
+    <section
+      id="stack"
+      ref={ref}
+      className="relative py-28 px-6 md:px-12 lg:px-20"
+    >
+      <div className="mx-auto max-w-5xl">
+        <div className="mb-16">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.5 }}
+            className="label-mono mb-4"
+          >
+            Compétences techniques
+          </motion.p>
+          <motion.h2
+            initial={{ opacity: 0, y: 16 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+            className="heading-display"
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
+              lineHeight: 1.05,
+            }}
+          >
+            Stack technique
+          </motion.h2>
+        </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-12">
           {CATEGORIES.map((cat, i) => (
             <motion.div
               key={cat.name}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.55, delay: 0.15 + i * 0.08, ease: EASE }}
+              transition={{ duration: 0.5, delay: 0.15 + i * 0.06, ease: EASE }}
             >
               <p
-                className="mb-4"
-                style={{
-                  fontFamily: "var(--font-jetbrains-mono)",
-                  fontSize: "0.6rem",
-                  color: "var(--text-muted)",
-                  letterSpacing: "0.15em",
-                  textTransform: "uppercase",
-                  borderBottom: "1px solid var(--border)",
-                  paddingBottom: "0.75rem",
-                }}
+                className="label-mono pb-3 mb-4"
+                style={{ borderBottom: "1px solid var(--border)" }}
               >
                 {cat.name}
               </p>
@@ -91,9 +86,9 @@ export default function Stack() {
                     key={item}
                     style={{
                       fontFamily: "var(--font-inter)",
-                      fontSize: "0.875rem",
+                      fontSize: "0.92rem",
                       color: "var(--text-muted)",
-                      lineHeight: 1.4,
+                      lineHeight: 1.5,
                     }}
                   >
                     {item}
@@ -104,7 +99,7 @@ export default function Stack() {
           ))}
         </div>
 
-        <div className="section-divider mt-24" />
+        <div className="section-divider mt-28" />
       </div>
     </section>
   );

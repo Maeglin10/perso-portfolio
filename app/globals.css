@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --bg:          #fafaf9;
-  --surface:     #f4f3f1;
-  --border:      rgba(0, 0, 0, 0.08);
-  --text:        #0a0a0a;
-  --text-muted:  #8c8c8c;
-  --accent:      #0a0a0a;
+  --bg:          #fcfcfa;
+  --surface:     #f4f3f0;
+  --border:      rgba(20, 20, 20, 0.08);
+  --border-strong: rgba(20, 20, 20, 0.18);
+  --text:        #141414;
+  --text-muted:  #6b6b6b;
+  --text-soft:   #9a9a9a;
+  --accent:      #1a4d3a;
+  --accent-soft: rgba(26, 77, 58, 0.08);
 }
 
 *,
@@ -23,26 +26,71 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: var(--font-inter), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "ss01", "cv11";
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 ::-webkit-scrollbar {
-  width: 2px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.12);
   border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fcfcfa;
 }
 
 .section-divider {
   height: 1px;
   background: var(--border);
   width: 100%;
+}
+
+.label-mono {
+  font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.heading-display {
+  font-family: var(--font-syne), Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.prose-body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.link-underline {
+  position: relative;
+  color: var(--text);
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.3s ease;
+}
+.link-underline:hover {
+  background-size: 100% 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -52,5 +100,10 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
+}
+
+@media (max-width: 640px) {
+  .label-mono { font-size: 0.65rem; letter-spacing: 0.14em; }
 }

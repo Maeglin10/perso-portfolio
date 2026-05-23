@@ -13,72 +13,65 @@ interface Project {
   tech: string[];
   url: string | null;
   year: string;
-  status: "live" | "in-progress" | "personal";
+  role: string;
 }
 
 const PROJECTS: Project[] = [
   {
     num: "01",
-    name: "Aevia Ecosystem",
+    name: "Aevia Inbox",
     tagline:
-      "Suite SaaS complète pour TPE/PME — 3 produits intégrés, multi-tenant, production",
-    tech: ["Next.js", "NestJS", "TypeScript", "PostgreSQL", "Prisma", "Vercel"],
-    url: "https://aevia.vercel.app",
-    year: "2025",
-    status: "live",
+      "Boîte de réception unifiée pour TPE/PME — WhatsApp, Instagram, LinkedIn, e-mail, webchat. Multi-tenant, IA conversationnelle, agents n8n.",
+    tech: ["NestJS", "Next.js", "PostgreSQL", "Redis", "Anthropic", "n8n"],
+    url: "https://aevia-inbox.vercel.app",
+    year: "2026",
+    role: "Conception · Implémentation · Opérations",
   },
   {
     num: "02",
-    name: "AeviaLaunch",
-    tagline: "201+ templates web professionnels avec preview live et marketplace intégrée",
-    tech: ["Next.js 15", "Tailwind CSS", "Framer Motion", "TypeScript", "WebP"],
+    name: "Aevia Launch",
+    tagline:
+      "Création de sites professionnels en 2 heures — paiement Stripe, génération automatique du contenu par Claude, livraison par e-mail avec preview live.",
+    tech: ["Next.js", "Stripe", "Claude API", "Vercel Blob", "Resend"],
     url: "https://aevia-launch.vercel.app",
-    year: "2025",
-    status: "live",
+    year: "2026",
+    role: "Produit · Stack complète · Automatisation",
   },
   {
     num: "03",
-    name: "AeviaSecurity",
-    tagline: "Audit de sécurité web en 60s — HTTPS, OWASP, score IA, Stripe",
-    tech: ["Next.js", "NestJS", "Fastify", "Anthropic API", "Stripe"],
+    name: "Aevia Security",
+    tagline:
+      "Audit de sécurité web en moins d’une minute — scan HTTPS, OWASP top 10, scoring IA. Rapport PDF, abonnement Stripe.",
+    tech: ["NestJS", "Next.js", "Fastify", "Claude API", "Stripe"],
     url: "https://aevia-security.vercel.app",
-    year: "2025",
-    status: "live",
+    year: "2026",
+    role: "Backend · Sécurité · Intégration paiement",
   },
   {
     num: "04",
-    name: "Skybot Inbox",
+    name: "Aevia",
     tagline:
-      "Inbox IA multicanal — WhatsApp, Telegram, Email, LinkedIn unifiés en une interface",
-    tech: ["NestJS", "Next.js", "WebSockets", "n8n", "Redis", "BullMQ", "Anthropic API"],
-    url: null,
-    year: "2025",
-    status: "in-progress",
+      "Portfolio commercial de l’écosystème Aevia — internationalisation 5 langues, blog technique, hub produits.",
+    tech: ["Next.js 16", "next-intl", "Tailwind", "MDX"],
+    url: "https://aevia.vercel.app",
+    year: "2026",
+    role: "Design · Implémentation · Contenu",
   },
   {
     num: "05",
     name: "OpenClaw",
-    tagline: "16 agents IA autonomes — QA, Dev, Management, tournent 24h/24 sur Render",
-    tech: ["Node.js", "Anthropic Claude", "Haiku 3.5", "Sonnet 4.5", "PostgreSQL"],
-    url: null,
-    year: "2025",
-    status: "personal",
-  },
-  {
-    num: "06",
-    name: "Jarvis",
     tagline:
-      "Assistant IA personnel vocal — interface HUD sci-fi, Web Speech API, Anthropic",
-    tech: ["Next.js", "Web Speech API", "Anthropic API", "TypeScript", "Framer Motion"],
+      "Système autonome de 16 agents IA — QA, développement, management. Tourne 24h/24 sur Render, modèles Haiku et Sonnet.",
+    tech: ["Node.js", "Anthropic", "PostgreSQL", "Render"],
     url: null,
-    year: "2025",
-    status: "personal",
+    year: "2026",
+    role: "Architecture · Orchestration",
   },
 ];
 
 function ProjectRow({ project, index }: { project: Project; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
   const [hovered, setHovered] = useState(false);
 
   const isClickable = !!project.url;
@@ -86,129 +79,96 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 18 }}
+      initial={{ opacity: 0, y: 12 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay: index * 0.055, ease: EASE }}
+      transition={{ duration: 0.55, delay: index * 0.04, ease: EASE }}
     >
-      <div
-        onClick={() => {
-          if (project.url) window.open(project.url, "_blank", "noopener,noreferrer");
-        }}
+      <a
+        href={project.url ?? undefined}
+        target={project.url ? "_blank" : undefined}
+        rel={project.url ? "noopener noreferrer" : undefined}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="py-7"
+        className="block py-8"
         style={{
           borderTop: "1px solid var(--border)",
           cursor: isClickable ? "pointer" : "default",
-          transition: "border-color 0.2s",
-          borderColor: hovered && isClickable ? "rgba(10,10,10,0.2)" : "var(--border)",
+          transition: "background 0.25s",
+          background: hovered && isClickable ? "var(--accent-soft)" : "transparent",
+          marginLeft: hovered && isClickable ? "-1rem" : "0",
+          marginRight: hovered && isClickable ? "-1rem" : "0",
+          paddingLeft: hovered && isClickable ? "1rem" : "0",
+          paddingRight: hovered && isClickable ? "1rem" : "0",
+          textDecoration: "none",
         }}
       >
-        <div className="flex items-start justify-between gap-6">
-          {/* Left */}
-          <div className="flex items-start gap-6 min-w-0">
-            {/* Number */}
-            <span
-              className="flex-shrink-0 mt-1.5"
+        <div className="grid grid-cols-[auto_1fr_auto] gap-6 md:gap-10 items-start">
+          <span
+            className="label-mono pt-1.5"
+            style={{ fontSize: "0.65rem", minWidth: "1.75rem" }}
+          >
+            {project.num}
+          </span>
+
+          <div className="min-w-0">
+            <h3
+              className="heading-display mb-2.5"
               style={{
-                fontFamily: "var(--font-jetbrains-mono)",
-                fontSize: "0.62rem",
-                color: "var(--text-muted)",
-                letterSpacing: "0.08em",
-                minWidth: "1.75rem",
+                fontSize: "clamp(1.15rem, 2.2vw, 1.5rem)",
+                fontWeight: 700,
+                letterSpacing: "-0.015em",
+                lineHeight: 1.1,
               }}
             >
-              {project.num}
-            </span>
+              {project.name}
+            </h3>
 
-            {/* Content */}
-            <div className="min-w-0">
-              <div className="flex items-center gap-3 mb-2.5 flex-wrap">
-                <h3
-                  style={{
-                    fontFamily: "var(--font-syne)",
-                    fontSize: "clamp(1.05rem, 2.2vw, 1.4rem)",
-                    fontWeight: 700,
-                    color: "var(--text)",
-                    letterSpacing: "-0.015em",
-                    lineHeight: 1,
-                    transition: "color 0.2s",
-                  }}
-                >
-                  {project.name}
-                </h3>
+            <p
+              className="mb-4"
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: "0.95rem",
+                color: "var(--text-muted)",
+                lineHeight: 1.65,
+                maxWidth: "62ch",
+              }}
+            >
+              {project.tagline}
+            </p>
 
-                {project.status === "live" && (
-                  <span
-                    className="flex items-center gap-1.5 flex-shrink-0"
-                    style={{
-                      fontFamily: "var(--font-jetbrains-mono)",
-                      fontSize: "0.52rem",
-                      color: "#16a34a",
-                      letterSpacing: "0.15em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    <span
-                      className="inline-block w-1 h-1 rounded-full"
-                      style={{ background: "#16a34a" }}
-                    />
-                    Live
-                  </span>
-                )}
-
-                {project.status === "in-progress" && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+              {project.tech.map((t, i) => (
+                <span key={t} className="flex items-center gap-3">
                   <span
                     style={{
                       fontFamily: "var(--font-jetbrains-mono)",
-                      fontSize: "0.52rem",
-                      color: "var(--text-muted)",
-                      letterSpacing: "0.12em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    En cours
-                  </span>
-                )}
-              </div>
-
-              <p
-                className="mb-4"
-                style={{
-                  fontFamily: "var(--font-inter)",
-                  fontSize: "0.875rem",
-                  color: "var(--text-muted)",
-                  lineHeight: 1.6,
-                  maxWidth: "62ch",
-                }}
-              >
-                {project.tagline}
-              </p>
-
-              <div className="flex flex-wrap gap-3">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    style={{
-                      fontFamily: "var(--font-jetbrains-mono)",
-                      fontSize: "0.6rem",
-                      color: "rgba(10,10,10,0.3)",
-                      letterSpacing: "0.04em",
+                      fontSize: "0.65rem",
+                      color: "var(--text-soft)",
+                      letterSpacing: "0.02em",
                     }}
                   >
                     {t}
                   </span>
-                ))}
-              </div>
+                  {i < project.tech.length - 1 && (
+                    <span
+                      style={{
+                        color: "var(--text-soft)",
+                        fontSize: "0.5rem",
+                      }}
+                    >
+                      ·
+                    </span>
+                  )}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Right: year + arrow */}
-          <div className="flex-shrink-0 flex flex-col items-end gap-3 mt-1">
+          <div className="flex flex-col items-end gap-3 pt-1.5 flex-shrink-0">
             <span
               style={{
                 fontFamily: "var(--font-jetbrains-mono)",
-                fontSize: "0.62rem",
+                fontSize: "0.65rem",
                 color: "var(--text-muted)",
               }}
             >
@@ -216,18 +176,18 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
             </span>
             {isClickable && (
               <ArrowUpRight
-                size={15}
+                size={16}
                 strokeWidth={1.5}
                 style={{
-                  color: hovered ? "var(--text)" : "var(--text-muted)",
-                  transform: hovered ? "translate(1px, -1px)" : "none",
+                  color: hovered ? "var(--accent)" : "var(--text-muted)",
+                  transform: hovered ? "translate(2px, -2px)" : "none",
                   transition: "color 0.2s, transform 0.2s",
                 }}
               />
             )}
           </div>
         </div>
-      </div>
+      </a>
     </motion.div>
   );
 }
@@ -237,38 +197,31 @@ export default function Projects() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projets" className="relative py-24 px-6 md:px-12 lg:px-20">
-      <div className="mx-auto max-w-7xl">
+    <section
+      id="projets"
+      className="relative py-28 px-6 md:px-12 lg:px-20"
+    >
+      <div className="mx-auto max-w-5xl">
         <div ref={ref} className="mb-16">
           <motion.p
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5 }}
-            style={{
-              fontFamily: "var(--font-jetbrains-mono)",
-              fontSize: "0.65rem",
-              color: "var(--text-muted)",
-              letterSpacing: "0.2em",
-              textTransform: "uppercase",
-              marginBottom: "1rem",
-            }}
+            className="label-mono mb-4"
           >
-            Travaux sélectionnés
+            03 / 04 · Projets sélectionnés
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
+            className="heading-display"
             style={{
-              fontFamily: "var(--font-syne)",
-              fontSize: "clamp(2.5rem, 8vw, 6rem)",
-              fontWeight: 800,
-              color: "var(--text)",
-              lineHeight: 0.92,
-              letterSpacing: "-0.03em",
+              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
+              lineHeight: 1.05,
             }}
           >
-            Projets
+            Travaux récents
           </motion.h2>
         </div>
 
