@@ -40,8 +40,8 @@ export default function Hero() {
             marginBottom: "2rem",
           }}
         >
-          Je conçois des produits SaaS et des systèmes IA{" "}
-          <span style={{ color: "var(--text-muted)" }}>de bout en bout.</span>
+          Développeur full-stack indépendant.{" "}
+          <span style={{ color: "var(--text-muted)" }}>Je code, je déploie, j&apos;opère.</span>
         </motion.h1>
 
         <motion.p
@@ -55,9 +55,9 @@ export default function Hero() {
             marginBottom: "3.5rem",
           }}
         >
-          Valentin Milliand — ingénieur full-stack, fondateur de l&apos;écosystème
-          Aevia. Je construis des plateformes multi-tenant en production sur
-          Next.js, NestJS et l&apos;API Claude, et j&apos;opère les systèmes que j&apos;écris.
+          Valentin Milliand — disponible pour vos missions freelance et CDI.
+          Backend NestJS, frontend Next.js, automatisation n8n, intégration IA
+          Claude. Je livre des produits production-grade, pas des prototypes.
         </motion.p>
 
         <motion.div

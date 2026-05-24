@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { GithubIcon } from "./icons";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
@@ -12,6 +13,7 @@ interface Project {
   tagline: string;
   tech: string[];
   url: string | null;
+  github: string | null;
   year: string;
   role: string;
 }
@@ -21,9 +23,10 @@ const PROJECTS: Project[] = [
     num: "01",
     name: "Aevia Inbox",
     tagline:
-      "Boîte de réception unifiée pour TPE/PME — WhatsApp, Instagram, LinkedIn, e-mail, webchat. Multi-tenant, IA conversationnelle, agents n8n.",
+      "Boîte de réception unifiée pour TPE/PME — WhatsApp, Instagram, LinkedIn, e-mail, webchat. Multi-tenant, IA conversationnelle Claude, agents n8n.",
     tech: ["NestJS", "Next.js", "PostgreSQL", "Redis", "Anthropic", "n8n"],
     url: "https://aevia-inbox.vercel.app",
+    github: "https://github.com/Maeglin10/aevia-inbox",
     year: "2026",
     role: "Conception · Implémentation · Opérations",
   },
@@ -31,9 +34,10 @@ const PROJECTS: Project[] = [
     num: "02",
     name: "Aevia Launch",
     tagline:
-      "Création de sites professionnels en 2 heures — paiement Stripe, génération automatique du contenu par Claude, livraison par e-mail avec preview live.",
+      "Création de sites professionnels en 2 heures — paiement Stripe, génération de contenu par Claude, livraison email avec preview live.",
     tech: ["Next.js", "Stripe", "Claude API", "Vercel Blob", "Resend"],
     url: "https://aevia-launch.vercel.app",
+    github: "https://github.com/Maeglin10/aevia-launch",
     year: "2026",
     role: "Produit · Stack complète · Automatisation",
   },
@@ -41,31 +45,56 @@ const PROJECTS: Project[] = [
     num: "03",
     name: "Aevia Security",
     tagline:
-      "Audit de sécurité web en moins d’une minute — scan HTTPS, OWASP top 10, scoring IA. Rapport PDF, abonnement Stripe.",
+      "Audit de sécurité web en moins d’une minute — scan HTTPS, OWASP top 10, scoring IA, rapport PDF. Abonnement Stripe.",
     tech: ["NestJS", "Next.js", "Fastify", "Claude API", "Stripe"],
     url: "https://aevia-security.vercel.app",
+    github: "https://github.com/Maeglin10/aevia-security",
     year: "2026",
     role: "Backend · Sécurité · Intégration paiement",
   },
   {
     num: "04",
-    name: "Aevia",
+    name: "Aevia Market",
     tagline:
-      "Portfolio commercial de l’écosystème Aevia — internationalisation 5 langues, blog technique, hub produits.",
-    tech: ["Next.js 16", "next-intl", "Tailwind", "MDX"],
-    url: "https://aevia.vercel.app",
+      "Marketplace de services freelance — Stripe Connect, escrow, gestion des litiges, payouts hebdomadaires. Multi-vendeurs.",
+    tech: ["Next.js", "Stripe Connect", "Prisma", "UploadThing", "PostgreSQL"],
+    url: "https://aevia-market.vercel.app",
+    github: "https://github.com/Maeglin10/marketplace",
     year: "2026",
-    role: "Design · Implémentation · Contenu",
+    role: "Architecture · Paiements · Modération",
   },
   {
     num: "05",
+    name: "Aevia Live",
+    tagline:
+      "Plateforme de streaming live avec tips en temps réel pour créateurs. HLS basse latence, chat modéré IA, payouts Stripe Connect.",
+    tech: ["NestJS", "Next.js", "Socket.io", "Stripe Connect", "HLS"],
+    url: "https://aevia-live.vercel.app",
+    github: "https://github.com/Maeglin10/aevia-live",
+    year: "2026",
+    role: "Streaming · Real-time · Monétisation",
+  },
+  {
+    num: "06",
     name: "OpenClaw",
     tagline:
       "Système autonome de 16 agents IA — QA, développement, management. Tourne 24h/24 sur Render, modèles Haiku et Sonnet.",
     tech: ["Node.js", "Anthropic", "PostgreSQL", "Render"],
     url: null,
+    github: null,
     year: "2026",
     role: "Architecture · Orchestration",
+  },
+  {
+    num: "07",
+    name: "Hub Aevia",
+    tagline:
+      "Site commercial de l’écosystème Aevia — i18n 5 langues, blog technique SEO, pages produits, intégration newsletter.",
+    tech: ["Next.js 16", "next-intl", "Tailwind", "MDX"],
+    url: "https://aevia.vercel.app",
+    github: "https://github.com/Maeglin10/portfolio",
+    year: "2026",
+    role: "Design · Implémentation · Contenu",
   },
 ];
 
@@ -174,17 +203,37 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
             >
               {project.year}
             </span>
-            {isClickable && (
-              <ArrowUpRight
-                size={16}
-                strokeWidth={1.5}
-                style={{
-                  color: hovered ? "var(--accent)" : "var(--text-muted)",
-                  transform: hovered ? "translate(2px, -2px)" : "none",
-                  transition: "color 0.2s, transform 0.2s",
-                }}
-              />
-            )}
+            <div className="flex items-center gap-3">
+              {project.github && (
+                <span
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.open(project.github!, "_blank", "noopener,noreferrer");
+                  }}
+                  title="Voir sur GitHub"
+                  style={{
+                    color: hovered ? "var(--text)" : "var(--text-muted)",
+                    transition: "color 0.2s",
+                    cursor: "pointer",
+                    display: "inline-flex",
+                  }}
+                >
+                  <GithubIcon size={15} />
+                </span>
+              )}
+              {isClickable && (
+                <ArrowUpRight
+                  size={16}
+                  strokeWidth={1.5}
+                  style={{
+                    color: hovered ? "var(--accent)" : "var(--text-muted)",
+                    transform: hovered ? "translate(2px, -2px)" : "none",
+                    transition: "color 0.2s, transform 0.2s",
+                  }}
+                />
+              )}
+            </div>
           </div>
         </div>
       </a>
